@@ -1,0 +1,28 @@
+@import "../variables";
+
+.avatar {
+  $self: &;
+
+  display: flex;
+  align-items: center;
+
+  #{$self} &__image {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border: 4px solid var(--avatar-border, currentColor);
+    margin-right: $space-sm;
+  }
+
+  &__name {
+    font-size: $fs-lg;
+    margin-bottom: $space-xs;
+    line-height: 1;
+  }
+
+  &__place {
+    font-size: $fs-xs;
+    line-height: .9;
+  }
+}

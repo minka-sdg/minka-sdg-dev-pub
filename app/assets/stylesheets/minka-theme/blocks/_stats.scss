@@ -1,0 +1,41 @@
+@import "../variables";
+
+.stats {
+  $self: &;
+  margin-bottom: $space-2xl;
+
+  &#{$self} ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__element {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    margin-right: $space-sm;
+    width: 94px;
+
+    img {
+      display: block;
+    }
+  }
+
+  &__number {
+    font-size: $fs-2xl;
+    display: block;
+    line-height: .9;
+    color: $brand-blue;
+  }
+
+  &__label {
+    text-transform: uppercase;
+    color: $grey-medium;
+  }
+
+}

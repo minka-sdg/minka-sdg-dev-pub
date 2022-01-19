@@ -1,0 +1,5 @@
+h2. MINKA
+
+Open source Rails app behind "minka-sdg.org":https://www.minka-sdg.org/
+
+

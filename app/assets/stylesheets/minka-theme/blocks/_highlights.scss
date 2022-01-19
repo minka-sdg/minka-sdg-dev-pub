@@ -1,0 +1,54 @@
+@import "../variables";
+
+.highlights {
+  $self: &;
+
+  background: image-url('home/highlights-bg.svg') no-repeat center top;
+  background-size: 100% 100%;
+  padding-top: $space-4xl;
+  padding-bottom: $space-4xl - $space-lg;
+  margin-bottom: $space-2xl;
+
+ &#{$self} ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  li {
+    flex-basis: 300px;
+    margin-bottom: $space-lg;
+  }
+
+  &__icon {
+    display: block;
+    width: 90px;
+  }
+
+  #{$self} &__section-title,
+  #{$self} &__title {
+    color: $brand-green;
+  }
+
+  #{$self} &__section-title {
+    font-size: $fs-3xl;
+    line-height: 1;
+    margin-bottom: $space-lg;
+  }
+
+  #{$self} &__title {
+    font-size: $fs-lg;
+  }
+
+  #{$self} &__text {
+    font-size: $fs-xs;
+
+     p {
+       font-size: inherit;
+     }
+  }
+
+}

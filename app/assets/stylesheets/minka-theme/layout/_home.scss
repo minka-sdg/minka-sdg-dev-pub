@@ -1,0 +1,9 @@
+.home {
+  #bodywrapper {
+    margin-bottom: 0;
+
+    &::after {
+      display: none;
+    }
+  }
+}

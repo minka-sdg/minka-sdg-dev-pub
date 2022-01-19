@@ -1,0 +1,42 @@
+@import "../variables";
+
+.app-stores {
+  $self: &;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: $fs-md;
+  margin-bottom: $space-3xl;
+
+  &__image {
+    width: 40%;
+  }
+
+  &__content {
+    width: 50%;
+  }
+
+  #{$self} &__title {
+    font-size: $fs-3xl;
+    line-height: 1;
+    margin-top: 0;
+  }
+
+  &#{$self} p {
+    margin-bottom: $space-md;
+  }
+
+  &__store-links {
+    display: flex;
+
+    a {
+      display: block;
+      margin-right: $space-sm;
+      img {
+        height: 55px;
+        width: auto;
+      }
+    }
+  }
+}

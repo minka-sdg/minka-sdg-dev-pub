@@ -1,0 +1,9 @@
+- locals['slides'].sample.tap do |hero|
+  .hero{style: "background-image: url(#{image_path(hero['background_image'])})"}
+    .container
+      .hero__main
+        %h1.hero__section-title
+          =t 'views.welcome.index.act_for_sustainable_future_html'
+        %a.cta{href: "/signup"}
+          =t 'views.welcome.index.join_today'
+    = render 'hero_avatar', name: hero['author_name'], place: hero['place'], image: hero['author_picture']

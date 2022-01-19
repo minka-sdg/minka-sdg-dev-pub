@@ -1,0 +1,22 @@
+@import "variables";
+
+@import "base/presets";
+@import "base/button";
+
+
+@import "plugins/slick";
+@import "plugins/slick-theme";
+
+@import "layout/home";
+@import "layout/header";
+@import "layout/footer";
+
+@import "blocks/hero";
+@import "blocks/avatar";
+@import "blocks/stats";
+@import "blocks/how-it-works";
+@import "blocks/sustainable-goals";
+@import "blocks/highlights";
+@import "blocks/app-stores";
+@import "blocks/testimonials";
+@import "blocks/join-us";

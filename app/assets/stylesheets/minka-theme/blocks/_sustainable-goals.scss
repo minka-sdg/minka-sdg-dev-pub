@@ -1,0 +1,37 @@
+@import "../variables";
+
+.sustainable-goals {
+  $self: &;
+
+  margin-bottom: $space-xl;
+  display: flex;
+  justify-content: center;
+  font-size: $fs-sm;
+
+  &__col {
+    width: 38%;
+    &:first-child {
+      margin-right: 8%;
+    }
+  }
+
+  #{$self} &__title {
+    font-size: $fs-xl;
+    line-height: 1;
+    margin-bottom: $space-md;
+  }
+
+  &__logo {
+    max-width: 420px;
+    margin-bottom: $space-md;
+  }
+
+  &__highlight {
+    background-color: $grey-light;
+    text-align: center;
+    padding: .3em .5em;
+    margin: $space-md 0;
+    font-size: $fs-2xs;
+  }
+
+}

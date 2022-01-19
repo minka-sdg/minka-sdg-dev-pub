@@ -1,0 +1,204 @@
+# Example services and site config. Keys in all caps are globally scoped
+# You must replace these values with ones tailored to your own site.
+# For external services, follow the link in the note to go to the signup
+# page for the service.
+
+base: &base
+
+    priority_zones:
+      - US
+      - Arizona
+      - Indiana
+      - Hawaii
+      - Alaska
+
+    rest_auth:
+        # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
+        REST_AUTH_SITE_KEY: <%= ENV['REST_AUTH_SITE_KEY'] || '09af09af09af09af09af09af09af09af09af09af' %>
+        REST_AUTH_DIGEST_STRETCHES: <%= ENV['REST_AUTH_DIGEST_STRETCHES'] || 10 %>
+
+    rails:
+        # Issue {rake secret} to get a new one
+        session_key: <%= ENV['SESSION_NAME'] || '_yoursite_session' %>
+        secret: <%= ENV['SECRET_KEY_BASE'] || '09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af09af' %>
+
+    # google_analytics:
+    #     # http://www.google.com/analytics/sign_up.html
+    #     tracker_id: UA-090909-9
+    #     domain_name: yoursite.org
+
+    ubio:
+        # http://www.ubio.org/index.php?pagename=form
+        key: <%= ENV['UBIO_KEY'] || '09af09af09af09af09af09af09af09af09af09af' %>
+
+    yahoo_dev_network:
+        # first need Yahoo account: https://edit.yahoo.com/registration
+        # then need to sign up for Yahoo Developers Network app interface:
+        # https://developer.apps.yahoo.com/wsregapp/
+        app_id: <%= ENV['YAHOO_DEV_NETWORK'] || '09azAZ09azAZ09azAZ09azAZ09azAZ09azAZ09az09azAZ09azAZ09azAZ09' %>
+
+    tile_servers:
+        # EXPERIMENTAL: These endpoints should return map tiles when hit with
+        # requests like /{Z}/{X}/{Y}.png.
+        # See http://bitbucket.org/springmeyer/tilelite/
+        observations: <%= ENV['TILE_SERVER_OBSERVATIONS'] || 'http://localhost:8000' %>
+        tilestache: <%= ENV['TILE_SERVER_CACHE'] || 'http://localhost:8000' %>
+        elasticsearch: <%= ENV['TILE_SERVER_ELASTICSEARCH'] || 'http://localhost:4000' %>
+
+    google_webmaster:
+        verification: <%= ENV['GOOGLE_WEBMASTER_KEY'] || 'abiglongkey' %>
+
+
+    <% if ENV['USING_S3'] %>
+    s3_credentials:
+      access_key_id: <%= ENV['S3_ACCESS_KEY_ID'] || 'yourkey' %>
+      secret_access_key: <%= ENV['S3_SECRET_ACCESS_KEY'] || 'yoursecretkey' %>
+      cloudfront_distribution: <%= ENV['CLOUDFRONT_DISTRIBUTION'] || 'yourcloudfrontdistribution' %>
+    s3_bucket: <%= ENV['S3_BUCKET'] || 'yourbucketname' %>
+    s3_protocol: https
+    s3_region: <%= ENV['S3_REGION'] || 'us-east-1' %>
+    <% end %>
+
+    memcached: <%= ENV['MEMCACHED_URL'] || 'localhost' %>
+
+    # Key for spam filtering with akismet. See http://akismet.com/development/api/
+    rakismet:
+      key: <%= ENV['RAKISMET_KEY'] || 'abc123' %>
+      site_url: <%= ENV['SITE_URL'] || 'http://www.yoursite.com' %>
+
+    <% if ENV['FACEBOOK_APP_ID'] %>
+    facebook:
+        app_id: <%= ENV['FACEBOOK_APP_ID'] || '00000000000' %>
+        app_secret: <%= ENV['FACEBOOK_APP_SECRET'] || '09af09af09af09af09af09af09af09af09af09af' %>
+        # facebook user IDs of people who can admin pages on the site
+        admin_ids: <%= ENV['FACEBOOK_ADMIN_IDS'].try(:split, ',') || [1,2] %>
+        namespace: <%= ENV['FACEBOOK_NAMESPACE'] || 'appname' %> # your facebook app's namespace, used for open graph tags
+    <% end %>
+
+    <% if ENV['TWITTER_KEY'] %>
+    twitter:
+        key: <%= ENV['TWITTER_KEY'] || '09af09af09af09af09af09af09af09af09af09af' %>
+        secret: <%= ENV['TWITTER_SECRET'] || '09af09af09af09af09af09af09af09af09af09af' %>
+        username: <%= ENV['TWITTER_USERNAME'] || 'your_twitter_username' %>
+    <% end %>
+
+    <% if ENV['APPLE_CLIENT_ID'] %>
+    apple:
+        client_id: <%= ENV['APPLE_CLIENT_ID'] || 'yourclientid' %>
+        team_id: <%= ENV['APPLE_TEAM_ID'] || 'yourteamid' %>
+        key_id: <%= ENV['APPLE_KEY_ID'] || 'yourkeyid' %>
+        pem: <%= ENV['APPLE_PEM'] || 'yourpem' %>
+    <% end %>
+
+    # cloudmade:
+    #     key: 09af09af09af09af09af09af09af09af09af09af
+
+    <% if ENV['BING_KEY'] %>
+    bing:
+        # http://www.bingmapsportal.com/
+        key: <%= ENV['BING_KEY'] || '09af09af09af09af09af09af09af09af09af09af' %>
+    <% end %>
+
+    flickr:
+        # http://www.flickr.com/services/api/keys/apply/
+        key: <%= ENV['FLICKR_KEY'] || '09af09af09af09af09af09af09af09af' %>
+        shared_secret: <%= ENV['FLICKR_SHARED_SECRET'] || '09af09af09af09af09af09af09af09af' %>
+
+    soundcloud:
+        # http://soundcloud.com/you/apps/new
+        client_id: <%= ENV['SOUNDCLOUD_CLIENT_ID'] || '09af09af09af09af09af09af09af09af' %>
+        secret: <%= ENV['SOUNDCLOUD_SECRET'] || '09af09af09af09af09af09af09af09af' %>
+
+    google:
+        # This should be a Google API key that can use Google maps
+        # https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
+        browser_api_key: <%= ENV['GOOGLE_BROWSER_API_KEY'] || '09af09af09af09af09af09af09af09af' %>
+        # client_id and secret should come from a Google OAuth 2.0 client ID
+        # https://console.developers.google.com/apis/credentials
+        client_id: <%= ENV['GOOGLE_CLIENT_ID'] || '09af09af09af09af09af09af09af09af' %>
+        secret: <%= ENV['GOOGLE_SECRET'] || '09af09af09af09af09af09af09af09af' %>
+
+    metadata_provider:
+
+    creator:
+
+    <% if ENV['NATURESERVE_KEY'] %>
+    natureserve:
+        key: <%= ENV['NATURESERVE_KEY'] || '0x0x0x0x0x0x0x0x' %>
+    <% end %>
+
+    # config.action_dispatch.x_sendfile_header. Most servers use X-Sendfile, but nginx prefers X-Accel-Redirect
+    x_sendfile_header: <%= ENV['X_SENDFILE_HEADER'] || 'X-Sendfile' %>
+
+    # # GBIF login credentials. Currently only used in
+    # # tools/gbif_observation_links.rb, so only useful if you send data
+    # # to GBIF
+
+    <% if ENV['GBIF_USERNAME'] %>
+    gbif:
+        username: <%= ENV['GBIF_USERNAME'] || 'yourusername' %>
+        password: <%= ENV['GBIF_PASSWORD'] || 'yourpassword' %>
+        notification_address: <%= ENV['GBIF_NOTIFICATION_ADDRESS'] || 'you@you.com' %>
+    <% end %>
+
+    # Elastic search for search indexing, other performance improvements
+    # ES also runs a syncing service on port 9300 by default. You want to use
+    # the API port. See
+    # http://stackoverflow.com/questions/19510659/java-io-streamcorruptedexception-invalid-internal-transport-message-format
+    # for more details
+    elasticsearch_host: <%= ENV['ES_URL'] || 'http://localhost:9200' %>
+
+    # An instance of https://github.com/inaturalist/iNaturalistAPI, the
+    # same code running at CONFIG.tile_servers.elasticsearch
+    node_api_url: <%= ENV['NODE_API_URL'] || 'http://localhost:4000/v1' %>
+
+    jwt_secret: <%= ENV['JWT_SECRET'] || 'jwt_secret' %>
+    jwt_application_secret: <%= ENV['JWT_APP_SECRET'] || 'jwtApplicationSecret' %>
+
+    # # Path to the CA .crt file
+    # ca_file: "/path/to/certs/ca-bundle.crt"
+    # # Path to the certificates directory
+    # ca_path: "/path/to/certs/"
+
+    # # Options for interacting with orcid.org
+    <% if ENV['ORCID_CLIENT_ID'] %>
+    orcid:
+        client_id:  <%= ENV['ORCID_CLIENT_ID'] || 'YOUR_CLIENT_ID' %>
+        client_secret:  <%= ENV['ORCID_CLIENT_SECRET'] || 'YOUR_CLIENT_SECRET' %>
+    <% end %>
+    # # Options for interacting with donorbox.org donation platform
+    <% if ENV['DONORBOX_KEY'] %>
+    donorbox:
+        email: <%= ENV['DONORBOX_EMAIL'] || 'you@domain.com' %>
+        key: <%= ENV['DONORBOX_KEY'] || 'YOUR_DONORBOX_KEY' %>
+    <% end %>
+
+    # Options for interacting with crowdin.com translation projects
+    # crowdin:
+    #     projects:
+    #         web:
+    #             identifier: inaturalistweb
+    #             key: 1234
+    #         mobile:
+    #             identifier: inaturalistios
+    #             key: 5678
+    #         seek:
+    #             identifier: seek
+    #             key: 4321
+
+    # # Sendgrid-specific options if using sendgrid.com to send email
+    # sendgrid:
+    #     # Unsubscribe groups configured on Sendgrid
+    #     asm_group_ids:
+    #         # The unsubscribe group used as a default for all emails sent from
+    #         # the web app
+    #         default: 1234
+
+development:
+    <<: *base
+
+test:
+    <<: *base
+
+production:
+    <<: *base

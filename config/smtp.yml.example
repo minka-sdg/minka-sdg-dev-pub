@@ -1,0 +1,7 @@
+#working gmail account for development purposes
+:address: <%= ENV['SMTP_ADDRESS'] || 'smtp.gmail.com' %>
+:port: <%= ENV['SMTP_PORT'] || 587 %>
+:user_name: <%= ENV['SMTP_USERNAME'] || 'FAKEINAT@gmail.com' %>
+:domain: <%= ENV['SMTP_DOMAIN'] || 'FAKEINAT@gmail.com' %>
+:password: <%= ENV['SMTP_PASSWORD'] || 'inatdevel' %>
+:authentication: <%= ENV['SMTP_AUTHENTICATION'] || :plain %>

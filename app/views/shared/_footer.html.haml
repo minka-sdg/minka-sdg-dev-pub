@@ -1,0 +1,75 @@
+- site = @site || CONFIG
+
+.footer.bootstrap
+  .container
+    .footer__top
+      .footer__nav
+        %p
+          %a{ href: site.about_url }=t :about
+        %p
+          %a{ href: site.help_url }=t :help
+        - if !site.discourse_url.blank?
+          %p
+            %a{ href: site.discourse_url }=t :forum
+        - elsif !site.feedback_url.blank?
+          %p
+            %a{ href: site.feedback_url }=t :feedback
+        - if site.press_url.present?
+          %p
+            %a{ href: site.press_url }=t :press
+        - if site.blog_url.present?
+          %p
+            %a{ href: site.blog_url }=t :our_blog
+        %p
+          %a{ href: site.community_guidelines_url }=t :community_guidelines
+      .footer__partners
+        %a{ href: "https://www.csic.es/" }
+          %img{src: image_path("logo-csic.png"), alt: "CSIC"}
+        %a{ href: "https://www.icm.csic.es" }
+          %img{src: image_path("logo-icm.png"), alt: "ICM"}
+
+    .footer__bottom
+      .footer__social-media
+        - if site.facebook_url.present?
+          = link_to t(:facebook), site.facebook_url, :class => "social-media-link facebook", title: t(:facebook)
+        - if site.twitter_url.present?
+          = link_to t(:twitter), site.twitter_url, :class => "social-media-link twitter", title: t(:twitter)
+        - if site.instagram_url.present?
+          = link_to t(:instagram), site.instagram_url, :class => "social-media-link instagram", title: t(:instagram)
+
+      .footer__legal
+        %a{ href: site.terms_url }=t :terms_service
+        %a{ href: site.privacy_url }=t :privacy
+
+    = raw site.custom_footer if site.custom_footer
+
+= raw site.custom_secondary_footer if site.custom_secondary_footer
+
+#inatnotice.bootstrap
+  .container
+    .row
+      .col-xs-12
+        .links.inlineblock
+          - if site.id == Site.default.id
+            =t :member_of_the_inaturalist_network_html, url: "/sites/network"
+            &nbsp;
+            |
+            &nbsp;
+            =t :powered_by_inaturalist_open_source_software_html
+            |
+            &nbsp;
+            =t :documentation_for_developers_html
+          - else
+            = branding_statement
+        #footer-locale-chooser.btn-group.dropup.pull-right
+          %button.btn.btn-default.dropdown-toggle{ data: { toggle: "dropdown" }, "aria-haspopup" => true, "aria-expanded" => false }
+            %i.icon-ios-world
+            = I18n.t( "locales.#{I18n.locale}", default: I18n.t( "locales.#{I18n.locale.to_s.split( "-" )[0]}", default: I18n.locale.to_s ) )
+            %span.caret
+            %span.sr-only=t :toggle_dropdown, default: "Toggle Dropdown"
+          %ul.dropdown-menu
+            - I18n.t( "locales", locale: :en ).keys.each do |locale|
+              %li
+                = link_to I18n.t( "locales.#{locale}", locale: locale ), set_locale_path( locale: locale ), title: t( "locales.#{locale}" )
+            %li.divider{ role: "separator" }
+            %li= link_to I18n.t( "help_translate!" ), "/pages/translate"

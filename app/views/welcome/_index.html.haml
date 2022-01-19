@@ -1,0 +1,18 @@
+- content_for :extracss do
+  = stylesheet_link_tag "welcome"
+- content_for :extrajs do
+  - if @site && !@site.homepage_data.blank?
+    :javascript
+      var HOMEPAGE_DATA = #{@site.homepage_data.html_safe};
+  - else
+    :javascript
+      var HOMEPAGE_DATA = null;
+  :javascript
+    var STATS_SUMMARY_URL = #{summary_stats_url(format: :json).inspect.html_safe}
+  = javascript_include_tag :welcome
+
+- @bodyclass = "home"
+- home_page = Rails.application.config_for(:home_page)
+#WelcomeIndex
+  - home_page.each do |key, data|
+    = render(key, locals: data) if ActiveRecord::Type::Boolean.new.type_cast_from_database(data['display'])

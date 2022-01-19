@@ -1,0 +1,78 @@
+home_page: &home_page
+  hero:
+    display: true
+    slides:
+      -
+        author_name: Fiona A. I
+        author_picture: placeholder/avatar.jpg
+        place: Montseny
+        background_image: home/home-hero-1.jpg
+      -
+        author_name: Fiona A. II
+        author_picture: placeholder/avatar.jpg
+        place: Montseny
+        background_image: home/home-hero-2.jpg
+      -
+        author_name: Fiona A. III
+        author_picture: placeholder/avatar.jpg
+        place: Montseny
+        background_image: home/home-hero-3.jpg
+      -
+        author_name: Fiona A. IV
+        author_picture: placeholder/avatar.jpg
+        place: Montseny
+        background_image: home/home-hero-4.jpg
+  stats:
+    display: true
+    mock: false
+    mock_people: 1_652
+    mock_observations: 98_935
+    mock_projects: 324
+  how_it_works:
+    display: true
+  sustainable_goals:
+    display: true
+  highlights:
+    display: true
+  app_stores:
+    display: false
+  testimonials:
+    display: true
+    quotes:
+      -
+        en: "1 EN As a child I was constantly outside searching for bugs and other creatures. Unfortunately that need to explore faded away as I became older. Now that I’ve been hiking more often, Minka has helped bring back that side of myself. I don’t just look at a plant and see a plant. I get close enough to see what could be crawling on that plant, and I want to know everything about it."
+        es: "1 ES As a child I was constantly outside searching for bugs and other creatures. Unfortunately that need to explore faded away as I became older. Now that I’ve been hiking more often, Minka has helped bring back that side of myself. I don’t just look at a plant and see a plant. I get close enough to see what could be crawling on that plant, and I want to know everything about it."
+        ca: "1 CA As a child I was constantly outside searching for bugs and other creatures. Unfortunately that need to explore faded away as I became older. Now that I’ve been hiking more often, Minka has helped bring back that side of myself. I don’t just look at a plant and see a plant. I get close enough to see what could be crawling on that plant, and I want to know everything about it."
+        author: Fiona I.
+        place: Montseny
+        author_picture: placeholder/avatar.jpg
+      -
+        en: "2 EN As a child II was constantly outside searching for bugs and other creatures. Unfortunately that need to explore faded away as I became older. Now that I’ve been hiking more often, Minka has helped bring back that side of myself. I don’t just look at a plant and see a plant. I get close enough to see what could be crawling on that plant, and I want to know everything about it."
+        es: "2 ES As a child I was constantly outside searching for bugs and other creatures. Unfortunately that need to explore faded away as I became older. Now that I’ve been hiking more often, Minka has helped bring back that side of myself. I don’t just look at a plant and see a plant. I get close enough to see what could be crawling on that plant, and I want to know everything about it."
+        ca: "2 CA As a child I was constantly outside searching for bugs and other creatures. Unfortunately that need to explore faded away as I became older. Now that I’ve been hiking more often, Minka has helped bring back that side of myself. I don’t just look at a plant and see a plant. I get close enough to see what could be crawling on that plant, and I want to know everything about it."
+        author: Fiona II.
+        place: Montseny
+        author_picture: placeholder/avatar.jpg
+      -
+        en: "3 EN As a child I was constantly outside searching for bugs and other creatures. Unfortunately that need to explore faded away as I became older. Now that I’ve been hiking more often, Minka has helped bring back that side of myself. I don’t just look at a plant and see a plant. I get close enough to see what could be crawling on that plant, and I want to know everything about it."
+        es: "3 ES As a child I was constantly outside searching for bugs and other creatures. Unfortunately that need to explore faded away as I became older. Now that I’ve been hiking more often, Minka has helped bring back that side of myself. I don’t just look at a plant and see a plant. I get close enough to see what could be crawling on that plant, and I want to know everything about it."
+        ca: "3 CA As a child I was constantly outside searching for bugs and other creatures. Unfortunately that need to explore faded away as I became older. Now that I’ve been hiking more often, Minka has helped bring back that side of myself. I don’t just look at a plant and see a plant. I get close enough to see what could be crawling on that plant, and I want to know everything about it."
+        author: Fiona III.
+        place: Montseny
+        author_picture: placeholder/avatar.jpg
+      -
+        en: "4 EN As a child I was constantly outside searching for bugs and other creatures. Unfortunately that need to explore faded away as I became older. Now that I’ve been hiking more often, Minka has helped bring back that side of myself. I don’t just look at a plant and see a plant. I get close enough to see what could be crawling on that plant, and I want to know everything about it."
+        es: "4 ES As a child I was constantly outside searching for bugs and other creatures. Unfortunately that need to explore faded away as I became older. Now that I’ve been hiking more often, Minka has helped bring back that side of myself. I don’t just look at a plant and see a plant. I get close enough to see what could be crawling on that plant, and I want to know everything about it."
+        ca: "4 CA As a child I was constantly outside searching for bugs and other creatures. Unfortunately that need to explore faded away as I became older. Now that I’ve been hiking more often, Minka has helped bring back that side of myself. I don’t just look at a plant and see a plant. I get close enough to see what could be crawling on that plant, and I want to know everything about it."
+        author: Fiona IV.
+        place: Montseny
+        author_picture: placeholder/avatar.jpg
+  join_us:
+    display: true
+
+development:
+  <<: *home_page
+test:
+  <<: *home_page
+production:
+  <<: *home_page

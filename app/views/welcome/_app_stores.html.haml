@@ -1,0 +1,13 @@
+.app-stores.container
+  .app-stores__image
+    %img{src: image_path("home/all-devices.svg"), alt: ""}
+  .app-stores__content
+    %h2.app-stores__title
+      =t 'views.welcome.index.app_stores_title_html'
+    %p
+      =t 'views.welcome.index.app_stores_text'
+    .app-stores__store-links
+      %a{href: '#'}
+        %img{src: image_path("home/app-store.png"), alt: I18n.t('views.welcome.index.app_stores_app_store_alt')}
+      %a{href: '#'}
+        %img{src: image_path("home/google-store.png"), alt: I18n.t('views.welcome.index.app_stores_google_play_alt')}

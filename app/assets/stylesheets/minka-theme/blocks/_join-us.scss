@@ -1,0 +1,27 @@
+@import "../variables";
+
+.join-us {
+  $self: &;
+
+  background: image-url('home/join-us-bg.jpg') no-repeat center center;
+  background-size: cover;
+  -webkit-mask-image: image-url('home/join-us-mask.svg');
+  mask-image: image-url('home/join-us-mask.svg');
+  -webkit-mask-size: cover;
+  mask-size: cover;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 400px;
+
+  #{$self} &__section-title {
+    color: inherit;
+    font-size: $fs-3xl;
+    line-height: 1;
+    text-shadow: #173b27 0 4px 21px;
+    margin-bottom: $space-lg;
+  }
+}

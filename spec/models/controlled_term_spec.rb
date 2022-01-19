@@ -1,0 +1,79 @@
+require "spec_helper.rb"
+
+describe ControlledTerm do
+  elastic_models( ControlledTerm )
+
+  describe "values" do
+    it "returns all values for a term" do
+      atr = ControlledTerm.make!
+      ControlledTermValue.make!(controlled_attribute: atr)
+      ControlledTermValue.make!(controlled_attribute: atr)
+      expect(atr.values.count).to eq 2
+    end
+  end
+
+  describe "taxon selection" do
+    let(:animalia) { Taxon.make!(name: "Animalia", rank: Taxon::KINGDOM) }
+    let(:mammalia) { Taxon.make!(name: "Mammalia", parent: animalia, rank: Taxon::CLASS) }
+    let(:primates) { Taxon.make!(name: "Primates", parent: mammalia, rank: Taxon::ORDER) }
+    let(:plantae) { Taxon.make!(name: "Plantae", rank: Taxon::KINGDOM) }
+  
+    describe "for_taxon" do
+      it "returns terms for taxa and their ancestors" do
+        AncestryDenormalizer.denormalize
+        ControlledTerm.make!
+        [mammalia, primates, plantae].each do |t|
+          ControlledTermTaxon.make!( taxon: t )
+        end
+        # Animalia should have the one term that with no taxon restrictions
+        expect(ControlledTerm.for_taxon(animalia).count).to eq 1
+        # Mammalia should have what Animalia has plus the Mammalia one
+        expect(ControlledTerm.for_taxon(mammalia).count).to eq 2
+        # Primates should have what Mammalia has plus the primates one
+        expect(ControlledTerm.for_taxon(primates).count).to eq 3
+        # Plantae should have the one term with no restrictions plus the plant-specific one
+        expect(ControlledTerm.for_taxon(plantae).count).to eq 2
+      end
+
+      it "does not return excepted descendants of the chosen taxon" do
+        animalia_ct = ControlledTermTaxon.make!( taxon: animalia ).controlled_term
+        mammalia_ct = ControlledTermTaxon.make!( taxon: mammalia ).controlled_term
+        ct_ids_for_animalia = ControlledTerm.for_taxon( animalia ).map(&:id)
+        expect( ct_ids_for_animalia ).to include animalia_ct.id
+        expect( ct_ids_for_animalia ).not_to include mammalia_ct.id
+      end
+    end
+
+    describe "applicable_to_taxon" do
+      it "should be true for a taxon associated with this controlled term" do
+        animalia_ct = ControlledTermTaxon.make!( taxon: animalia ).controlled_term
+        expect( animalia_ct.applicable_to_taxon( animalia ) ).to be true
+      end
+      it "should be true for a descendant of the taxon associated with this controlled term" do
+        animalia_ct = ControlledTermTaxon.make!( taxon: animalia ).controlled_term
+        expect( animalia_ct.applicable_to_taxon( mammalia ) ).to be true
+      end
+      it "should be false for a descendant of the taxon associated with this controlled term if the descendant is an exception" do
+        animalia_ct = ControlledTermTaxon.make!( taxon: animalia ).controlled_term
+        ControlledTermTaxon.make!( taxon: mammalia, controlled_term: animalia_ct, exception: true )
+        expect( animalia_ct.applicable_to_taxon( mammalia ) ).to be false
+      end
+      it "should be true for any taxon if the term has no associated taxa" do
+        ct = ControlledTerm.make!
+        expect( ct.applicable_to_taxon( mammalia ) ).to be true
+      end
+    end
+  end
+
+  describe "unassigned_values" do
+    it "returns an array of value terms not associated with an attribute" do
+      atr = ControlledTerm.make!
+      val = ControlledTerm.make!(is_value: true)
+      ControlledTermValue.make!(controlled_attribute: atr, controlled_value: val)
+      unassigned = ControlledTerm.make!(is_value: true)
+      expect(ControlledTerm.unassigned_values.count).to eq 1
+      expect(ControlledTerm.unassigned_values.first).to eq unassigned
+    end
+  end
+
+end

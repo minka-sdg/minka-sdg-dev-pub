@@ -1,0 +1,27 @@
+- mock_data = ActiveRecord::Type::Boolean.new.type_cast_from_database(locals['mock'])
+.stats.container
+  %ul
+    %li.stats__element
+      %span.stats__icon
+        %img{src: image_path("home/ic1.svg"), alt: ""}
+      %div
+        %span.stats__number
+          =mock_data && locals['mock_people'].to_s(:delimited) || User.count.to_s(:delimited)
+        %span.stats__label
+          =t 'views.welcome.index.stats_people'
+    %li.stats__element
+      %span.stats__icon
+        %img{src: image_path("home/ic2.svg"), alt: ""}
+      %div
+        %span.stats__number
+          =mock_data && locals['mock_observations'].to_s(:delimited) || Observation.count.to_s(:delimited)
+        %span.stats__label
+          =t 'views.welcome.index.stats_views'
+    %li.stats__element
+      %span.stats__icon
+        %img{src: image_path("home/ic3.svg"), alt: ""}
+      %div
+        %span.stats__number
+          =mock_data && locals['mock_projects'].to_s(:delimited) || ProjectObservation.count.to_s(:delimited)
+        %span.stats__label
+          =t 'views.welcome.index.stats_projects'

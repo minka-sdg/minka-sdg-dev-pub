@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>facebook (1)</title>
+    <defs>
+        <filter id="filter-1">
+            <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.168627 0 0 0 0 0.180392 0 0 0 0 0.309804 0 0 0 1.000000 0"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="UI" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.5">
+        <g id="Home" transform="translate(-93.000000, -6160.000000)">
+            <g id="Footer" transform="translate(93.000000, 5979.000000)">
+                <g id="facebook-(1)" transform="translate(0.000000, 181.000000)" filter="url(#filter-1)">
+                    <g>
+                        <path d="M28,0 L4,0 C1.794,0 0,1.794 0,4 L0,28 C0,30.206 1.794,32 4,32 L16,32 L16,21 L12,21 L12,16 L16,16 L16,12 C16,8.686 18.686,6 22,6 L26,6 L26,11 L24,11 C22.896,11 22,10.896 22,12 L22,16 L27,16 L25,21 L22,21 L22,32 L28,32 C30.206,32 32,30.206 32,28 L32,4 C32,1.794 30.206,0 28,0 Z" id="Path" fill="#000000" fill-rule="nonzero"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

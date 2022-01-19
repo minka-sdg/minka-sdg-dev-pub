@@ -1,0 +1,63 @@
+- content_for :title do
+  - @title = capture do
+    Manage content by
+    = link_to @display_user.login, @display_user
+    = surround '(', ')' do
+      = @klass.name.pluralize
+  = strip_tags(@title)
+
+- content_for :extrajs do
+  = javascript_include_tag 'jquery/plugins/jquery.labelize'
+  :javascript
+    function deleteSelected() {
+      if (confirm("Are you sure you want to delete those records?")) {
+        $('#deleteform').submit()
+      }
+    }
+    $(document).ready(function() {
+      $('tr').labelize()
+    })
+
+.container-fluid
+  .row
+    .col-xs-12
+      %h2= @title
+  .row
+    .col-xs-2
+      %ul.leftmenu
+        - for klass in @reflection_names.sort
+          %li= link_to klass.underscore.humanize, url_for(:type => klass.underscore), :class => @type == klass.underscore ? "active" : nil
+    .col-xs-10
+      #controls.btn-toolbar.stacked
+        = link_to_function "Select all", "$('form input[type=checkbox]').prop('checked', true)", class: "btn btn-default btn-sm"
+        = link_to_function "Select none", "$('form input[type=checkbox]').prop('checked', false)", class: "btn btn-default btn-sm"
+        = link_to_function "Delete selected".html_safe, "deleteSelected()", class: "btn btn-default btn-sm btn-danger"
+      = form_tag destroy_user_content_path(@display_user.id, @type), :method => :delete, :id => "deleteform" do
+        %table.table
+          %tr
+            %th
+            %th.nobr id
+            %th.nobr title / name
+            %th.nobr body
+            %th.nobr
+              = sortable_table_header "created_at", label: "created at"
+            %th.nobr
+              = sortable_table_header "updated_at", label: "updated at"
+            %th.nobr actions
+          - for record in @records
+            - linkable_record = record.becomes(record.class.base_class)
+            %tr
+              %td= check_box_tag "ids[]", record.id
+              %td= record.id
+              %td
+                - name = record.try_methods(:title, :name, :species_guess, :to_s)
+                = link_to(name, record) rescue link_to(name, linkable_record) rescue name
+              %td= record.try_methods(:body, :description, :remarks)
+              %td= record.created_at
+              %td= record.updated_at
+              %td.nobr
+                = link_to( "view", record, class: "btn btn-default btn-xs" ) rescue link_to( "view", linkable_record, class: "btn btn-default btn-xs" ) rescue nil
+                - if respond_to? "edit_#{linkable_record.class.name.underscore}_path"
+                  = link_to "edit", send( "edit_#{linkable_record.class.name.underscore}_path", linkable_record ), class: "btn btn-default btn-xs" rescue nil
+      - if @records.respond_to?(:total_pages)
+        = will_paginate @records

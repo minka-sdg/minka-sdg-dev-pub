@@ -1,0 +1,19 @@
+.testimonials
+  .testimonials__inner
+    .testimonials__intro
+      %h2.testimonials__section-title
+        =t 'views.welcome.index.testimonials_title'
+      %p
+        =t 'views.welcome.index.testimonials_text'
+
+    .testimonials__gallery
+      %button.testimonials__arrow-prev{type: "button"} Anterior
+      %button.testimonials__arrow-next{type: "button"} Siguiente
+      .testimonials__gallery-content
+        - locals['quotes'].each do |quote|
+          %div
+            .testimonials__slide
+              %blockquote
+                %p
+                  =quote[I18n.locale.to_s.split('-').first]
+                = render 'testimonials_avatar', name: quote['author_name'], place: quote['place'], image: quote['author_picture']
